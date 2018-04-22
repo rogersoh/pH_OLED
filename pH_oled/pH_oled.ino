@@ -68,11 +68,11 @@ void loop(void)
         digitalWrite(LED,digitalRead(LED)^1);
         printTime=millis();
     // text display tests
-  display.setTextSize(2);
+  display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0,0);
   display.print("Volt:");
-  display.println(voltage,2);
+  display.println(voltage,3);
   display.print("pH: ");
   display.println(pHValue,2);
   display.display();
