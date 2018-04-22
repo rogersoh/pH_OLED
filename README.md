@@ -11,6 +11,6 @@ Vcc 5V
 Grd Grd
 
 pH sensor board
-+ pin 5V
-- Grd
++ve pin 5V
+-ve Grd
 Signal pin A0
