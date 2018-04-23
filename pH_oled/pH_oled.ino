@@ -1,7 +1,4 @@
 /*
-  # This sample code is used to test the pH meter V1.0.
-  # Editor : YouYou
-  # Ver    : 1.0
   # Product: analog pH meter
   # SKU    : SEN0161
 */
@@ -14,7 +11,7 @@
 Adafruit_SSD1306 display(OLED_RESET);
 
 #define SensorPin A0            //pH meter Analog output to Arduino Analog Input 0
-#define pHoffset 2.0587           //deviation compensate
+#define zeroVolt 2.0587           //deviation compensate
 #define OFFSET 0
 #define LED 13
 #define samplingInterval 20
@@ -57,7 +54,7 @@ void loop(void)
     pHArray[pHArrayIndex++] = analogRead(SensorPin);
     if (pHArrayIndex == ArrayLenth)pHArrayIndex = 0;
     voltage = avergearray(pHArray, ArrayLenth) * 5.0 / 1024;
-    pHValue = (7 / pHoffset) * voltage + OFFSET;
+    pHValue = (7 / zeroVolt) * voltage + OFFSET;
     samplingTime = millis();
   }
   if (millis() - printTime > printInterval)  //Every 800 milliseconds, print a numerical, convert the state of the LED indicator
