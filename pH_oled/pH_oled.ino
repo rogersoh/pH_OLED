@@ -11,14 +11,15 @@
 Adafruit_SSD1306 display(OLED_RESET);
 
 #define SensorPin A0            //pH meter Analog output to Arduino Analog Input 0
-#define zeroVolt 2.0587           //deviation compensate
-#define OFFSET 0
+#define zeroVolt 1.970          //deviation compensate
+#define OFFSET 0.1
 #define LED 13
 #define samplingInterval 20
 #define printInterval 800
 #define ArrayLenth  40    //times of collection
 int pHArray[ArrayLenth];   //Store the average value of the sensor feedback
 int pHArrayIndex = 0;
+
 void setup(void)
 {
   Serial.begin(9600);
@@ -54,7 +55,7 @@ void loop(void)
     pHArray[pHArrayIndex++] = analogRead(SensorPin);
     if (pHArrayIndex == ArrayLenth)pHArrayIndex = 0;
     voltage = avergearray(pHArray, ArrayLenth) * 5.0 / 1024;
-    pHValue = (7 / zeroVolt) * voltage + OFFSET;
+    pHValue = (7.0 / zeroVolt) * voltage + OFFSET;
     samplingTime = millis();
   }
   if (millis() - printTime > printInterval)  //Every 800 milliseconds, print a numerical, convert the state of the LED indicator
@@ -69,14 +70,16 @@ void loop(void)
     display.setTextSize(1);
     display.setTextColor(WHITE);
     display.setCursor(0, 0);
-    display.print("Volt:");
+    display.print("sensor Voltage:");
     display.println(voltage, 3);
+    display.setTextSize(2);
     display.print("pH: ");
     display.println(pHValue, 2);
     display.display();
     display.clearDisplay();
   }
 }
+
 double avergearray(int* arr, int number) {
   int i;
   int max, min;
