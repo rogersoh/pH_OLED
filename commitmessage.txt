@@ -1,0 +1,13 @@
+change equation for pH calculation
+
+The previous equation is incorrect as it does not take consideration on the 
+summing op-amp in the sensor interface. 
+The sensor voltage is calculated as E = Eo - k.T.pH in mV and the output
+is thru an summing op-amp to offset the 7 pH to 2V ( the 7pH measure voltage 
+at the electrode is 0V while 4pH is 177.48mV at temperature of 25C)
+k.T. value at different temperature are:
+0 C = -54.2 mV/pH
+20 C = -58.2 mV/pH
+25 C = -59.2 mV/pH
+50 C = -64.1 mV/pH
+75 C = -69.1 mV/pH 
