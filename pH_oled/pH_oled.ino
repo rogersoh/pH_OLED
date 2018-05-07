@@ -11,8 +11,8 @@
 Adafruit_SSD1306 display(OLED_RESET);
 
 #define SensorPin A0            //pH meter Analog output to Arduino Analog Input 0
-#define zeroVolt 1.916          //deviation compensate
-#define OFFSET 0
+#define zeroVolt 1.970         //deviation compensate
+#define OFFSET 0.135
 #define LED 13
 #define samplingInterval 20
 #define printInterval 800
